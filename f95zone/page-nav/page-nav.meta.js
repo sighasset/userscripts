@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         f95zone: Page Navigation
 // @namespace    https://github.com/sighasset
-// @version      0.2
+// @version      0.1
 // @description  F1 - previous, F2 - next
 // @author       sighasset
 // @match        https://f95zone.to/sam/latest_alpha/*
