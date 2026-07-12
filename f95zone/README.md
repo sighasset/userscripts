@@ -8,7 +8,7 @@ Navigate pages with **F1** (previous) and **F2** (next).
 
 ### Links
 
-- 📥 **Install:** [page-nav.user.js](page-nav/page-nav.user.js)
+- 📥 **Install:** [page-nav.user.js](https://raw.githubusercontent.com/sighasset/userscripts/main/f95zone/page-nav/page-nav.user.js)
 - 📂 **Source:** [page-nav/](page-nav/)
 
 ## 🎨 Recolor Tags
@@ -21,5 +21,5 @@ Customizes tag colors applied by [f95checker](https://github.com/Willy-JL/f95che
 
 ### Links
 
-- 📥 **Install:** [recolor-tags.user.css](recolor-tags/recolor-tags.user.css)
+- 📥 **Install:** [recolor-tags.user.css](https://raw.githubusercontent.com/sighasset/userscripts/main/f95zone/recolor-tags/recolor-tags.user.css)
 - 📂 **Source:** [recolor-tags/](recolor-tags/)
