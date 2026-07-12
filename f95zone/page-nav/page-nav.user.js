@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         f95zone: Page Navigation
 // @namespace    https://github.com/sighasset
-// @version      0.1
+// @version      0.2
 // @description  F1 - previous, F2 - next
 // @author       sighasset
 // @match        https://f95zone.to/sam/latest_alpha/*
@@ -15,6 +15,7 @@
   'use strict';
 
   document.addEventListener('keyup', (e) => {
+    console.log('test update');
     if (e.code === 'F1') {
       queryPrevBtn().click();
     } else if (e.code === 'F2') {
