@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Page Navigation
-// @namespace    https://github.com/sighasset
+// @namespace    https://github.com/sighasset/userscripts/tree/main/f95zone
 // @version      0.2
 // @description  Navigate pages with F1 (previous) and F2 (next)
 // @author       sighasset
