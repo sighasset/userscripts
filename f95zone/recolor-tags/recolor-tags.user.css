@@ -1,0 +1,33 @@
+/* ==UserStyle==
+@name         Recolor Tags
+@namespace    https://github.com/sighasset/userscripts/tree/main/f95zone
+@version      0.1
+@description  Changes tag colors applied by f95checker browser extension
+@author       sighasset
+@homepageURL  https://github.com/sighasset/userscripts
+@var color red-tag-color "Red Tag Color" #003152
+@var color green-tag-color "Green Tag Color" #006600
+@var color black-tag-color "Black Tag Color" #000000
+@var color default-tag-color "Default Tag Color" #B94E89
+==/UserStyle== */
+
+@-moz-document domain("f95zone.to") {
+  .resource-tile_tags span[style*='background-color: rgb(153, 0, 0)'],
+  .tagItem[style*='background-color: rgb(153, 0, 0)'] {
+    background-color: var(--red-tag-color) !important;
+  }
+
+  .resource-tile_tags span[style*='background-color: rgb(0, 102, 0)'],
+  .tagItem[style*='background-color: rgb(0, 102, 0)'] {
+    background-color: var(--green-tag-color) !important;
+  }
+
+  .resource-tile_tags span[style*='background-color: rgb(0, 0, 0)'],
+  .tagItem[style*='background-color: rgb(0, 0, 0)'] {
+    background-color: var(--black-tag-color) !important;
+  }
+
+  .resource-tile_tags span:not([style*='background-color']) {
+    background-color: var(--default-tag-color) !important;
+  }
+}
