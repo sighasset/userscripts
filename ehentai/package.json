@@ -1,0 +1,8 @@
+{
+  "private": true,
+  "scripts": {
+    "test:all": "pnpm -r test",
+    "test:lib": "pnpm --filter lib test",
+    "test:forum": "pnpm --filter forum test"
+  }
+}

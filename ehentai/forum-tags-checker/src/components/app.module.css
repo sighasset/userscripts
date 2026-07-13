@@ -1,0 +1,41 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headerRight {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.checkButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+}
+
+.spinner {
+  --size: 12px;
+  width: var(--size);
+  height: var(--size);
+  border: 2px solid black;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
