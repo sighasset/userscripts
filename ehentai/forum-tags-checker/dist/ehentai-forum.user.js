@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Tags Checker
 // @namespace    https://github.com/sighasset/userscripts/tree/main/ehentai
-// @version      0.1
+// @version      0.2
 // @author       sighasset
 // @description  Utillity to work with downvote requests
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=forums.e-hentai.org
@@ -199,6 +199,52 @@
   }
   function includesTag(tags, tag) {
     return tags.some((t2) => equalsTag(t2, tag));
+  }
+  function downloadFile(filename, content) {
+    const blob = new Blob([content], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const a2 = document.createElement("a");
+    a2.href = url;
+    a2.download = filename;
+    document.body.appendChild(a2);
+    a2.click();
+    document.body.removeChild(a2);
+    URL.revokeObjectURL(url);
+  }
+  function promptFile(accept) {
+    return new Promise((resolve) => {
+      const input = document.createElement("input");
+      input.type = "file";
+      input.accept = accept;
+      input.onchange = () => {
+        const file = input.files?.[0] || null;
+        resolve(file);
+        cleanup();
+      };
+      input.oncancel = () => {
+        resolve(null);
+        cleanup();
+      };
+      const handleWindowFocus = () => {
+        window.removeEventListener("focus", handleWindowFocus);
+        setTimeout(() => {
+          if (!input.files || input.files.length === 0) {
+            resolve(null);
+            cleanup();
+          }
+        }, 300);
+      };
+      const cleanup = () => {
+        input.onchange = null;
+        input.oncancel = null;
+        window.removeEventListener("focus", handleWindowFocus);
+        input.remove();
+      };
+      window.addEventListener("focus", handleWindowFocus);
+      input.style.display = "none";
+      document.body.appendChild(input);
+      input.click();
+    });
   }
   function hasMetadataResponse(response) {
     return "gmetadata" in response;
@@ -1218,6 +1264,41 @@ u$1(
       return originalValidate.apply(this, args);
     };
   }
+  const BACKUP_NAME = "backup-downvote-posts";
+  const BACKUP_EXT = ".json";
+  function downloadBackup() {
+    const posts = loadPosts();
+    const backup = {
+      posts
+    };
+    const content = JSON.stringify(backup);
+    downloadFile(BACKUP_NAME + BACKUP_EXT, content);
+  }
+  async function restoreBackup() {
+    const file = await promptFile("application/json");
+    if (!file) {
+      console.warn("no backup file selected");
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        const content = reader.result;
+        const backup = JSON.parse(content);
+        const posts = backup.posts;
+        posts.forEach((post) => {
+          try {
+            saveOrUpdatePost(post);
+          } catch (error) {
+            console.error("error restoring post", post, error);
+          }
+        });
+      } catch (error) {
+        console.error("error parsing backup file", error);
+      }
+    };
+    reader.readAsText(file);
+  }
   main();
   function main() {
     setupGlobalShortcuts();
@@ -1240,6 +1321,12 @@ u$1(
       if (e2.ctrlKey && e2.altKey && e2.code === "Digit9") {
         openPosts();
         openPosts({ isStriked: true });
+      }
+      if (e2.code === "F11") {
+        downloadBackup();
+      }
+      if (e2.code === "F12") {
+        restoreBackup();
       }
     });
   }

@@ -13,7 +13,7 @@ export default defineConfig({
       userscript: {
         name: 'Tags Checker',
         namespace: 'https://github.com/sighasset/userscripts/tree/main/ehentai',
-        version: '0.1',
+        version: '0.2',
         description: 'Utillity to work with downvote requests',
         author: 'sighasset',
         match: ['https://forums.e-hentai.org/*'],

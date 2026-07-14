@@ -7,6 +7,7 @@ import { setupPostAutoSave } from '@/storage/auto-save';
 import { loadPosts } from '@/storage/persist-posts';
 import { isCreatingPost, isEditingPost } from '@/utils/forum-dom-utils';
 import { isStrikedPost } from '@/utils/post-utils';
+import { downloadBackup, restoreBackup } from './storage/backup';
 
 main();
 
@@ -70,6 +71,12 @@ function setupGlobalShortcuts() {
     if (e.ctrlKey && e.altKey && e.code === 'Digit9') {
       openPosts();
       openPosts({ isStriked: true });
+    }
+    if (e.code === 'F11') {
+      downloadBackup();
+    }
+    if (e.code === 'F12') {
+      restoreBackup();
     }
   });
 }
