@@ -72,10 +72,10 @@ function setupGlobalShortcuts() {
       openPosts();
       openPosts({ isStriked: true });
     }
-    if (e.code === 'F11') {
+    if (e.ctrlKey && e.code === 'F11') {
       downloadBackup();
     }
-    if (e.code === 'F12') {
+    if (e.ctrlKey && e.code === 'F12') {
       restoreBackup();
     }
   });

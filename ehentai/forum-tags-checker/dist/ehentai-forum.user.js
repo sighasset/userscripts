@@ -1322,10 +1322,10 @@ u$1(
         openPosts();
         openPosts({ isStriked: true });
       }
-      if (e2.code === "F11") {
+      if (e2.ctrlKey && e2.code === "F11") {
         downloadBackup();
       }
-      if (e2.code === "F12") {
+      if (e2.ctrlKey && e2.code === "F12") {
         restoreBackup();
       }
     });
