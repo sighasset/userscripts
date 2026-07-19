@@ -1,0 +1,15 @@
+/* ==UserStyle==
+@name         Filter Out Added
+@namespace    https://github.com/sighasset/userscripts/tree/main/f95zone
+@version      0.1
+@description  Hides search results for games already in your f95checker library
+@author       sighasset
+@homepageURL  https://github.com/sighasset/userscripts
+==/UserStyle== */
+
+@-moz-document url-prefix("https://f95zone.to/sam/latest_alpha/")
+{
+  div.resource-tile:has(.f95checker-library-icons) {
+    display: none;
+  }
+}
