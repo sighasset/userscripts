@@ -6,8 +6,8 @@
 // @author       sighasset
 // @match        https://f95zone.to/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=f95zone.to
-// @updateURL    https://raw.githubusercontent.com/sighasset/userscripts/main/f95zone/page-nav/page-nav.meta.js
-// @downloadURL  https://raw.githubusercontent.com/sighasset/userscripts/main/f95zone/page-nav/page-nav.user.js
+// @updateURL    https://raw.githubusercontent.com/sighasset/userscripts/refs/heads/main/f95zone/page-nav/page-nav.meta.js
+// @downloadURL  https://raw.githubusercontent.com/sighasset/userscripts/refs/heads/main/f95zone/page-nav/page-nav.user.js
 // @grant        none
 // ==/UserScript==
 
