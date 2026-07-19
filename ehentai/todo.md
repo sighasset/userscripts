@@ -3,8 +3,12 @@
 
 tags-checker:
 
+- fix!!!: last created post has faulty post href; there is a bug probably
+
 - feat: auto-subscribe on post (if not already subbed or only on creating depending whats easier to check) on submit
 - feat: support checking other's people posts
 - feat: in one group merge galleries that has same tags (tag.info => gallery.info?), do we support tags.length > 1 is the question
 - refactor: rewrite ui to use some library e.g. preact
 - docs: add readme
+- refactor: replace href with ids
+- todo: dashboard or something to view & change keybinds / settings
