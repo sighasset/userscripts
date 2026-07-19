@@ -17,7 +17,7 @@ Hides search results below the configured rating threshold.
 
 ### Links
 
-- 📥 **Install:** **[hide-low-rated-games.user.css](https://raw.githubusercontent.com/sighasset/userscripts/refs/heads/main/f95zone/hide-low-rated-games/hide-low-rated-games.user.css)**
+- 📥 **Install:** **[hide-low-rated-games.user.js](https://raw.githubusercontent.com/sighasset/userscripts/refs/heads/main/f95zone/hide-low-rated-games/hide-low-rated-games.user.js)**
 - 📂 **Source:** **[hide-low-rated-games/](hide-low-rated-games/)**
 
 ## 🎨 Recolor Tags
