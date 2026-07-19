@@ -16,9 +16,9 @@ export default defineConfig({
         match: ['https://f95zone.to/sam/latest_alpha/*'],
         icon: 'https://www.google.com/s2/favicons?sz=64&domain=f95zone.to',
         updateURL:
-          'https://raw.githubusercontent.com/sighasset/userscripts/refs/heads/main/f95zone/hide-low-rated/dist/hide-low-rated.meta.js',
+          'https://github.com/sighasset/userscripts/raw/refs/heads/main/f95zone/hide-low-rated-games/dist/hide-low-rated-games.meta.js',
         downloadURL:
-          'https://raw.githubusercontent.com/sighasset/userscripts/refs/heads/main/f95zone/hide-low-rated/dist/hide-low-rated.user.js',
+          'https://github.com/sighasset/userscripts/raw/refs/heads/main/f95zone/hide-low-rated-games/dist/hide-low-rated-games.user.js',
       },
       build: {
         metaFileName: true,

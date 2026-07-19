@@ -5,8 +5,8 @@
 // @author       sighasset
 // @description  Hides search results below the configured rating threshold
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=f95zone.to
-// @downloadURL  https://raw.githubusercontent.com/sighasset/userscripts/refs/heads/main/f95zone/hide-low-rated/dist/hide-low-rated.user.js
-// @updateURL    https://raw.githubusercontent.com/sighasset/userscripts/refs/heads/main/f95zone/hide-low-rated/dist/hide-low-rated.meta.js
+// @downloadURL  https://github.com/sighasset/userscripts/raw/refs/heads/main/f95zone/hide-low-rated-games/dist/hide-low-rated-games.user.js
+// @updateURL    https://github.com/sighasset/userscripts/raw/refs/heads/main/f95zone/hide-low-rated-games/dist/hide-low-rated-games.meta.js
 // @match        https://f95zone.to/sam/latest_alpha/*
 // @grant        GM_addStyle
 // @grant        GM_getValue

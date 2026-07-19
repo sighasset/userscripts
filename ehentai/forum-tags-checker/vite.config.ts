@@ -19,9 +19,9 @@ export default defineConfig({
         match: ['https://forums.e-hentai.org/*'],
         icon: 'https://www.google.com/s2/favicons?sz=64&domain=forums.e-hentai.org',
         updateURL:
-          'https://raw.githubusercontent.com/sighasset/userscripts/refs/heads/main/ehentai/forum-tags-checker/dist/forum-tags-checker.meta.js',
+          'https://github.com/sighasset/userscripts/raw/refs/heads/main/ehentai/forum-tags-checker/dist/forum-tags-checker.meta.js',
         downloadURL:
-          'https://raw.githubusercontent.com/sighasset/userscripts/refs/heads/main/ehentai/forum-tags-checker/dist/forum-tags-checker.user.js',
+          'https://github.com/sighasset/userscripts/raw/refs/heads/main/ehentai/forum-tags-checker/dist/forum-tags-checker.user.js',
       },
       build: {
         metaFileName: true,
