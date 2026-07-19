@@ -27,7 +27,7 @@ function registerConfigMenu() {
       const value = prompt('Minimum rating', threshold.toString());
       if (!value) return;
 
-      const newThreshold = parseFloat(value);
+      const newThreshold = parseFloat(value.replaceAll(',', '.'));
       if (Number.isNaN(newThreshold)) return;
 
       threshold = newThreshold;

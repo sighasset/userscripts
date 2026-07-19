@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Hide Low Rated Games
 // @namespace    https://github.com/sighasset/userscripts/tree/main/f95zone
-// @version      0.1
+// @version      0.2
 // @author       sighasset
 // @description  Hides search results below the configured rating threshold
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=f95zone.to
@@ -41,7 +41,7 @@
 		configMenuId = _GM_registerMenuCommand(`Set minimum rating (${threshold})`, async () => {
 			const value = prompt("Minimum rating", threshold.toString());
 			if (!value) return;
-			const newThreshold = parseFloat(value);
+			const newThreshold = parseFloat(value.replaceAll(",", "."));
 			if (Number.isNaN(newThreshold)) return;
 			threshold = newThreshold;
 			_GM_setValue("threshold", threshold);
