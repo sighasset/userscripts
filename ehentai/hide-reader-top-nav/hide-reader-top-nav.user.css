@@ -1,0 +1,16 @@
+/* ==UserStyle==
+@name         Hide Top Navigation
+@namespace    https://github.com/sighasset/userscripts/tree/main/ehentai
+@version      0.1
+@description  Hides navigation buttons above reader page
+@author       sighasset
+@homepageURL  https://github.com/sighasset/userscripts
+==/UserStyle== */
+
+@-moz-document url-prefix("https://e-hentai.org/s/"), url-prefix("https://exhentai.org/s/")
+{
+  h1,
+  #i2 {
+    display: none;
+  }
+}
