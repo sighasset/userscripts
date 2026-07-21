@@ -1,0 +1,29 @@
+/* ==UserStyle==
+@name         Recolor Tag Borders
+@namespace    https://github.com/sighasset/userscripts/tree/main/ehentai
+@version      0.1
+@description  description
+@author       sighasset
+@homepageURL  https://github.com/sighasset/userscripts
+@var color strong-tag-color "Strong Tag Color" #d6d91dd1
+@var color medium-tag-color "Medium Tag Color" #11ffff
+@var color weak-tag-color "Weak Tag Color" #7a818c
+==/UserStyle== */
+
+@-moz-document url-prefix("https://exhentai.org/g/")
+{
+  .gt {
+    border-style: solid !important;
+    border-color: var(--strong-tag-color) !important;
+  }
+
+  .gtl {
+    /* border-style: solid !important; */
+    border-color: var(--medium-tag-color) !important;
+  }
+
+  .gtw {
+    border-style: dotted !important;
+    border-color: var(--weak-tag-color) !important;
+  }
+}
