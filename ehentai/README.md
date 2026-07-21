@@ -1,4 +1,4 @@
-# F95zone
+# Ehentai
 
 A collection of userscripts and userstyles for **[ehentai](https://e-hentai.org/)**
 
