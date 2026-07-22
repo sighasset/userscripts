@@ -3,12 +3,14 @@ import './main.css';
 
 import { GM_getValue } from '$';
 import { registerConfigNumberVar } from './config';
-import { LOW_RATED_CLASS } from './const';
-import { queryGames, queryRating } from './queries';
+import { LIKES_ID, LOW_RATED_CLASS, VIEWS_ID } from './const';
+import { queryGames, queryLikes, queryRating, queryViews } from './queries';
 
 const RATING_ID = 'min_rating';
 
-registerConfigNumberVar(RATING_ID, 4.0, 'Minimum rating', refreshLowRated);
+registerConfigNumberVar(RATING_ID, 4.0, 'Minimum Rating', refreshLowRated);
+registerConfigNumberVar(LIKES_ID, 0, 'Minimum Likes', refreshLowRated);
+registerConfigNumberVar(VIEWS_ID, 0, 'Minimum Views', refreshLowRated);
 
 observeBody();
 
@@ -22,11 +24,18 @@ function observeBody() {
 
 function hideLowRated() {
   const minRating = GM_getValue(RATING_ID);
-  if (minRating <= 0) return;
+  const minLikes = GM_getValue(LIKES_ID);
+  const minViews = GM_getValue(VIEWS_ID);
+  console.log(
+    `Filtering games with minRating: ${minRating}, minLikes: ${minLikes}, minViews: ${minViews}`,
+  );
+  if (minRating <= 0 && minLikes <= 0 && minViews <= 0) return;
 
   for (const game of queryGames()) {
     const rating = queryRating(game);
-    if (rating < minRating) {
+    const likes = queryLikes(game);
+    const views = queryViews(game);
+    if (rating < minRating || likes < minLikes || views < minViews) {
       game.classList.add(LOW_RATED_CLASS);
     }
   }

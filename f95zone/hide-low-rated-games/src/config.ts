@@ -5,34 +5,66 @@ import {
   GM_unregisterMenuCommand,
 } from '$';
 
-const varsMap = new Map<string, string | number>();
+type VarData = {
+  id: string;
+  menuId: string | number;
+  value: number;
+  menuText: string;
+  onUpdate?: (newValue: number) => void;
+};
+
+const varsMap = new Map<string, VarData>();
 
 export function registerConfigNumberVar(
   id: string,
-  defaultValue: number,
+  value: number,
   menuText: string,
   onUpdate?: (newValue: number) => void,
 ) {
   const existingVar = varsMap.get(id);
   if (existingVar) {
-    GM_unregisterMenuCommand(existingVar);
+    GM_unregisterMenuCommand(existingVar.menuId);
   }
 
-  const value = Number(GM_getValue(id, defaultValue));
+  GM_setValue(id, value);
 
-  let menuId = GM_registerMenuCommand(`${menuText} (${value})`, async () => {
-    const input = prompt(menuText, value.toString());
-    if (!input) return;
+  const menuId = GM_registerMenuCommand(`${menuText} (${value})`, async () =>
+    updateVar(numVar),
+  );
+  const numVar: VarData = {
+    id,
+    menuId,
+    value,
+    menuText,
+    onUpdate,
+  };
 
-    const normalizedInput = input.trim().replaceAll(',', '.');
-    const newValue = Number(normalizedInput);
-    if (!Number.isFinite(newValue)) return;
-    GM_setValue(id, newValue);
+  varsMap.set(id, numVar);
+}
 
-    if (onUpdate) {
-      onUpdate(newValue);
-    }
-  });
+export function updateVar(numVar: VarData) {
+  const input = prompt(numVar.menuText, numVar.value.toString());
+  if (!input) return;
 
-  varsMap.set(id, menuId);
+  const normalizedInput = input.trim().replaceAll(',', '.');
+  const newValue = Number(normalizedInput);
+  if (!Number.isFinite(newValue)) return;
+
+  GM_setValue(numVar.id, newValue);
+  rebuildConfigMenu();
+  if (numVar.onUpdate) {
+    numVar.onUpdate(newValue);
+  }
+}
+
+function rebuildConfigMenu() {
+  for (const [id, varData] of varsMap.entries()) {
+    GM_unregisterMenuCommand(varData.menuId);
+    registerConfigNumberVar(
+      id,
+      GM_getValue(id),
+      varData.menuText,
+      varData.onUpdate,
+    );
+  }
 }

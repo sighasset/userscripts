@@ -13,7 +13,7 @@ Navigate pages with **F1** (previous) and **F2** (next).
 
 ## 📜 Hide Low-Rated Games
 
-Hides search results below the configured rating threshold.
+Hides search results below the configured rating, likes or views threshold.
 
 ### Links
 

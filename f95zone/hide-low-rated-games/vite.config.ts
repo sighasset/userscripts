@@ -9,7 +9,7 @@ export default defineConfig({
       userscript: {
         name: 'Hide Low Rated Games',
         namespace: 'https://github.com/sighasset/userscripts/tree/main/f95zone',
-        version: '0.2',
+        version: '0.3',
         description:
           'Hides search results below the configured rating threshold',
         author: 'sighasset',
