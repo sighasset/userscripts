@@ -26,9 +26,6 @@ function hideLowRated() {
   const minRating = GM_getValue(RATING_ID);
   const minLikes = GM_getValue(LIKES_ID);
   const minViews = GM_getValue(VIEWS_ID);
-  console.log(
-    `Filtering games with minRating: ${minRating}, minLikes: ${minLikes}, minViews: ${minViews}`,
-  );
   if (minRating <= 0 && minLikes <= 0 && minViews <= 0) return;
 
   for (const game of queryGames()) {

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Hide Low Rated Games
 // @namespace    https://github.com/sighasset/userscripts/tree/main/f95zone
-// @version      0.3
+// @version      0.4
 // @author       sighasset
 // @description  Hides search results below the configured rating threshold
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=f95zone.to
@@ -101,7 +101,6 @@
 		const minRating = _GM_getValue(RATING_ID);
 		const minLikes = _GM_getValue(LIKES_ID);
 		const minViews = _GM_getValue(VIEWS_ID);
-		console.log(`Filtering games with minRating: ${minRating}, minLikes: ${minLikes}, minViews: ${minViews}`);
 		if (minRating <= 0 && minLikes <= 0 && minViews <= 0) return;
 		for (const game of queryGames()) {
 			const rating = queryRating(game);
