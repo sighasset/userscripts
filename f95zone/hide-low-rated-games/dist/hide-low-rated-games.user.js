@@ -34,18 +34,32 @@
 	var varsMap = new Map();
 	function registerConfigNumberVar(id, value, menuText, onUpdate) {
 		const existingVar = varsMap.get(id);
-		if (existingVar) _GM_unregisterMenuCommand(existingVar);
+		if (existingVar) _GM_unregisterMenuCommand(existingVar.menuId);
 		_GM_setValue(id, value);
-		let menuId = _GM_registerMenuCommand(`${menuText} (${value})`, async () => {
-			const input = prompt(menuText, value.toString());
-			if (!input) return;
-			const normalizedInput = input.trim().replaceAll(",", ".");
-			const newValue = Number(normalizedInput);
-			if (!Number.isFinite(newValue)) return;
-			registerConfigNumberVar(id, newValue, menuText, onUpdate);
-			if (onUpdate) onUpdate(newValue);
-		});
-		varsMap.set(id, menuId);
+		const numVar = {
+			id,
+			menuId: _GM_registerMenuCommand(`${menuText} (${value})`, async () => updateVar(numVar)),
+			value,
+			menuText,
+			onUpdate
+		};
+		varsMap.set(id, numVar);
+	}
+	function updateVar(numVar) {
+		const input = prompt(numVar.menuText, numVar.value.toString());
+		if (!input) return;
+		const normalizedInput = input.trim().replaceAll(",", ".");
+		const newValue = Number(normalizedInput);
+		if (!Number.isFinite(newValue)) return;
+		_GM_setValue(numVar.id, newValue);
+		rebuildConfigMenu();
+		if (numVar.onUpdate) numVar.onUpdate(newValue);
+	}
+	function rebuildConfigMenu() {
+		for (const [id, varData] of varsMap.entries()) {
+			_GM_unregisterMenuCommand(varData.menuId);
+			registerConfigNumberVar(id, _GM_getValue(id), varData.menuText, varData.onUpdate);
+		}
 	}
 	var LOW_RATED_CLASS = "us-low-rated";
 	var LIKES_ID = "min_likes";
