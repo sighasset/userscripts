@@ -32,6 +32,12 @@ function hideLowRated() {
     const rating = queryRating(game);
     const likes = queryLikes(game);
     const views = queryViews(game);
+
+    if (Number.isNaN(rating) && minRating > 0) {
+      game.classList.add(LOW_RATED_CLASS);
+      continue;
+    }
+
     if (rating < minRating || likes < minLikes || views < minViews) {
       game.classList.add(LOW_RATED_CLASS);
     }

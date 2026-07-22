@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Hide Low Rated Games
 // @namespace    https://github.com/sighasset/userscripts/tree/main/f95zone
-// @version      0.4
+// @version      0.5
 // @author       sighasset
 // @description  Hides search results below the configured rating threshold
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=f95zone.to
