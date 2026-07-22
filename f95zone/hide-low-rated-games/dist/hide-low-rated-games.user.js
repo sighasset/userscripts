@@ -31,42 +31,51 @@
 	var _GM_registerMenuCommand = (() => typeof GM_registerMenuCommand != "undefined" ? GM_registerMenuCommand : void 0)();
 	var _GM_setValue = (() => typeof GM_setValue != "undefined" ? GM_setValue : void 0)();
 	var _GM_unregisterMenuCommand = (() => typeof GM_unregisterMenuCommand != "undefined" ? GM_unregisterMenuCommand : void 0)();
-	var LOW_RATED_CLASS = "us-low-rated";
-	var threshold = _GM_getValue("threshold", 4);
-	var configMenuId;
-	registerConfigMenu();
-	observeBody();
-	function registerConfigMenu() {
-		if (configMenuId !== void 0) _GM_unregisterMenuCommand(configMenuId);
-		configMenuId = _GM_registerMenuCommand(`Set minimum rating (${threshold})`, async () => {
-			const value = prompt("Minimum rating", threshold.toString());
-			if (!value) return;
-			const newThreshold = parseFloat(value.replaceAll(",", "."));
-			if (Number.isNaN(newThreshold)) return;
-			threshold = newThreshold;
-			_GM_setValue("threshold", threshold);
-			clearLowRated();
-			setLowRated();
-			registerConfigMenu();
+	var varsMap = new Map();
+	function registerConfigNumberVar(id, defaultValue, menuText, onUpdate) {
+		const existingVar = varsMap.get(id);
+		if (existingVar) _GM_unregisterMenuCommand(existingVar);
+		const value = Number(_GM_getValue(id, defaultValue));
+		let menuId = _GM_registerMenuCommand(`${menuText} (${value})`, async () => {
+			const input = prompt(menuText, value.toString());
+			if (!input) return;
+			const normalizedInput = input.trim().replaceAll(",", ".");
+			const newValue = Number(normalizedInput);
+			if (!Number.isFinite(newValue)) return;
+			_GM_setValue(id, newValue);
+			if (onUpdate) onUpdate(newValue);
 		});
+		varsMap.set(id, menuId);
 	}
+	var LOW_RATED_CLASS = "us-low-rated";
+	function queryGames() {
+		return document.querySelectorAll("div.resource-tile");
+	}
+	function queryRating(entry) {
+		const rating = entry.querySelector("div.resource-tile_info-meta_rating");
+		if (!rating) throw new Error("Couldnt query rating block");
+		return parseFloat(rating.textContent);
+	}
+	var RATING_ID = "min_rating";
+	registerConfigNumberVar(RATING_ID, 4, "Minimum rating", refreshLowRated);
+	observeBody();
 	function observeBody() {
 		const targetNode = document.querySelector("body");
-		new MutationObserver(setLowRated).observe(targetNode, {
+		new MutationObserver(hideLowRated).observe(targetNode, {
 			childList: true,
 			subtree: true
 		});
 	}
-	function setLowRated() {
-		if (threshold <= 0) return;
-		document.querySelectorAll("div.resource-tile").forEach((entry) => {
-			const rating = entry.querySelector("div.resource-tile_info-meta_rating");
-			if (!rating) throw new Error("Couldnt query rating block");
-			if (parseFloat(rating.textContent) >= threshold) return;
-			entry.classList.add(LOW_RATED_CLASS);
-		});
+	function hideLowRated() {
+		const minRating = _GM_getValue(RATING_ID);
+		if (minRating <= 0) return;
+		for (const game of queryGames()) if (queryRating(game) < minRating) game.classList.add(LOW_RATED_CLASS);
 	}
-	function clearLowRated() {
+	function undoHide() {
 		document.querySelectorAll(`.${LOW_RATED_CLASS}`).forEach((e) => e.classList.remove(LOW_RATED_CLASS));
+	}
+	function refreshLowRated() {
+		undoHide();
+		hideLowRated();
 	}
 })();
