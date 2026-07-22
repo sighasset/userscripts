@@ -6,6 +6,15 @@ A collection of userscripts and userstyles for **[ehentai](https://e-hentai.org/
 
 WIP
 
+## 📜 Redirect
+
+Automatically redirects galleries that are unavailable on **E-Hentai** to **ExHentai**.
+
+### Links
+
+- 📥 **Install:** **[redirect.user.js](https://github.com/sighasset/userscripts/raw/refs/heads/main/ehentai/redirect/redirect.user.js)**
+- 📂 **Source:** **[redirect/](redirect/)**
+
 ## 🎨 Hide Top Navigation
 
 Hides navigation buttons above reader page
@@ -17,7 +26,7 @@ Hides navigation buttons above reader page
 
 ## 🎨 Recolor Tag Borders
 
-Makes ExHentai tag strength levels more visually distinct
+Makes **ExHentai** tag strength levels more visually distinct
 
 ### Links
 
